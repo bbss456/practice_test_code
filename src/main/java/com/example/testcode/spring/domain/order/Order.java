@@ -30,7 +30,8 @@ public class Order extends BaseEntity {
 
     private LocalDateTime registeredDateTime;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
     public Order(List<Product> products, LocalDateTime registeredDateTime) {
@@ -51,5 +52,9 @@ public class Order extends BaseEntity {
         return products.stream()
                 .mapToInt(Product::getPrice)
                 .sum();
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
