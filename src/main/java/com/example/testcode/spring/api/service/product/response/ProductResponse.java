@@ -12,7 +12,7 @@ public class ProductResponse {
     private String productNumber;
     private String name;
     private ProductType type;
-    private ProductSellingStatus sellingType;
+    private ProductSellingStatus sellingStatus;
     private int price;
 
 
@@ -21,22 +21,22 @@ public class ProductResponse {
                             String productNumber,
                             String name,
                             ProductType type,
-                            ProductSellingStatus sellingType,
+                            ProductSellingStatus sellingStatus,
                             int price) {
         this.id = id;
         this.productNumber = productNumber;
         this.name = name;
         this.type = type;
-        this.sellingType = sellingType;
+        this.sellingStatus = sellingStatus;
         this.price = price;
     }
-
-    public static  ProductResponse of(Product product)  {
+    
+    public static ProductResponse of(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
                 .productNumber(product.getProductNumber())
                 .type(product.getType())
-                .sellingType(product.getSellingStatus())
+                .sellingStatus(product.getSellingStatus())
                 .name(product.getName())
                 .price(product.getPrice())
                 .build();
