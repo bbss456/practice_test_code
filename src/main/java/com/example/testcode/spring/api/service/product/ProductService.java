@@ -1,6 +1,7 @@
 package com.example.testcode.spring.api.service.product;
 
 import com.example.testcode.spring.api.controller.product.dto.request.ProductCreateRequest;
+import com.example.testcode.spring.api.service.product.request.ProductCreateServiceRequest;
 import com.example.testcode.spring.api.service.product.response.ProductResponse;
 import com.example.testcode.spring.domain.product.Product;
 import com.example.testcode.spring.domain.product.ProductRepository;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -19,7 +21,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public ProductResponse createProduct(ProductCreateRequest request) {
+    public ProductResponse createProduct(ProductCreateServiceRequest request) {
         String nextProductNumber = createNextProductNumber();
 
         Product product = request.toEntity(nextProductNumber);
@@ -29,6 +31,7 @@ public class ProductService {
     }
 
 
+    @Transactional(readOnly = true)
     public List<ProductResponse> getSellingProducts() {
         List<Product> products = productRepository.findAllBySellingStatusIn(ProductSellingStatus.forDisplay());
 

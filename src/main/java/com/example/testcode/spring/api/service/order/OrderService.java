@@ -1,6 +1,6 @@
 package com.example.testcode.spring.api.service.order;
 
-import com.example.testcode.spring.api.service.order.request.OrderCreateRequest;
+import com.example.testcode.spring.api.service.order.request.OrderCreateServiceRequest;
 import com.example.testcode.spring.api.service.order.response.OrderResponse;
 import com.example.testcode.spring.domain.order.Order;
 import com.example.testcode.spring.domain.order.OrderRepository;
@@ -10,7 +10,6 @@ import com.example.testcode.spring.domain.product.ProductType;
 import com.example.testcode.spring.domain.stock.Stock;
 import com.example.testcode.spring.domain.stock.StockRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,7 +28,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final StockRepository stockRepository;
 
-    public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+    public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.getProductNumbers();
         List<Product> products = findProductsBy(productNumbers);
 
